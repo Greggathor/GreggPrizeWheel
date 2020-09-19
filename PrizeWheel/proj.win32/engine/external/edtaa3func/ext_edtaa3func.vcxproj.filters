@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\cocos2d\external\edtaa3func\edtaa3func.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\cocos2d\external\edtaa3func\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{87CD6DF8-84C1-3209-BADA-EB5BA11641CD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Classes\AppDelegate.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Classes\HelloWorldScene.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\proj.win32\main.cpp">
+      <Filter>Source Files\proj.win32</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\cocos2d\cocos\precheader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Classes\AppDelegate.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Classes\HelloWorldScene.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\proj.win32\main.h">
+      <Filter>Source Files\proj.win32</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\proj.win32\resource.h">
+      <Filter>Source Files\proj.win32</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Resources\CloseNormal.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Resources\CloseSelected.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Resources\HelloWorld.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Resources\fonts\Marker Felt.ttf">
+      <Filter>Resources\fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Resources\fonts\arial.ttf">
+      <Filter>Resources\fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Resources\res\.gitkeep">
+      <Filter>Resources\res</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\proj.win32\game.rc">
+      <Filter>Source Files\proj.win32</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{66D5AE7D-6795-3DDD-ACBA-FE8CEBFE423C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\fonts">
+      <UniqueIdentifier>{13CCB7D9-B7A2-3A5C-89C5-DCFD6D896B13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\res">
+      <UniqueIdentifier>{1DD3010E-C1FB-3532-819C-A031CCD58C99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{87CD6DF8-84C1-3209-BADA-EB5BA11641CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Classes">
+      <UniqueIdentifier>{D720ED43-B097-3661-A2CE-A844FD36DC0B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\proj.win32">
+      <UniqueIdentifier>{EA60A823-BC0D-33A4-A78F-927BF25E05A8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
