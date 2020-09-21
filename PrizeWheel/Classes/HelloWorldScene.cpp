@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,6 +25,10 @@
 #include "HelloWorldScene.h"
 
 USING_NS_CC;
+
+
+Sprite* prizeSprites[8];
+Label* prizeLabels[8];
 
 Scene* HelloWorld::createScene()
 {
@@ -43,7 +47,7 @@ bool HelloWorld::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !Scene::init() )
+    if (!Scene::init())
     {
         return false;
     }
@@ -51,82 +55,100 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
+    //auto mynode = MyDrawNode::create(); // Create an instance of MyDrawNode
+    //this->addChild(mynode);             // Add the instance to the parent
 
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+    std::string resourcePath = "C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/Resources/";
 
-    if (closeItem == nullptr ||
-        closeItem->getContentSize().width <= 0 ||
-        closeItem->getContentSize().height <= 0)
+    auto wheelBorder = Sprite::create(resourcePath + "WheelAssets/wheel_border.png");
+    this->addChild(wheelBorder);
+
+    auto wheelArrow = Sprite::create(resourcePath + "WheelAssets/wheel_arrow.png");
+    wheelBorder->addChild(wheelArrow, 5);
+    wheelArrow->setAnchorPoint(Vec2(0.5f, 0.8f));
+    wheelArrow->setPosition(wheelBorder->getBoundingBox().size.width / 2.0f, wheelBorder->getBoundingBox().size.height);
+
+    wheelSections = Sprite::create(resourcePath + "WheelAssets/wheel_sections_8.png");
+    wheelBorder->addChild(wheelSections, -1);
+    wheelSections->setPosition(wheelBorder->getBoundingBox().size.width / 2.0f, wheelBorder->getBoundingBox().size.height / 2.0f);
+    
+    //Create prize sprites on wheel
+    prizeSprites[0] = Sprite::create(resourcePath + "WheelAssets/heart.png");
+    prizeLabels[0] = Label::createWithSystemFont("30 min", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+    
+    prizeSprites[1] = Sprite::create(resourcePath + "WheelAssets/brush.png");
+    prizeLabels[1] = Label::createWithSystemFont("x3", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+    
+    prizeSprites[2] = Sprite::create(resourcePath + "WheelAssets/gem.png");
+    prizeLabels[2] = Label::createWithSystemFont("x35", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+    
+    prizeSprites[3] = Sprite::create(resourcePath + "WheelAssets/hammer.png");
+    prizeLabels[3] = Label::createWithSystemFont("x3", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+    
+    prizeSprites[4] = Sprite::create(resourcePath + "WheelAssets/coin.png");
+    prizeLabels[4] = Label::createWithSystemFont("x750", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+    
+    prizeSprites[5] = Sprite::create(resourcePath + "WheelAssets/brush.png");
+    prizeLabels[5] = Label::createWithSystemFont("x1", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+    
+    prizeSprites[6] = Sprite::create(resourcePath + "WheelAssets/gem.png");
+    prizeLabels[6] = Label::createWithSystemFont("x75", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+    
+    prizeSprites[7] = Sprite::create(resourcePath + "WheelAssets/hammer.png");
+    prizeLabels[7] = Label::createWithSystemFont("x1", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+
+    for (int i = 0; i < 8; i++)
     {
-        problemLoading("'CloseNormal.png' and 'CloseSelected.png'");
-    }
-    else
-    {
-        float x = origin.x + visibleSize.width - closeItem->getContentSize().width/2;
-        float y = origin.y + closeItem->getContentSize().height/2;
-        closeItem->setPosition(Vec2(x,y));
-    }
+        float iRotation = (360.0 / 16.0) + (360.0 / 8.0) * i;
+        wheelSections->setRotation(iRotation);
+        wheelSections->addChild(prizeSprites[i], 1);
+        prizeSprites[i]->setPosition(wheelSections->convertToNodeSpace(Vec2(0.0f, wheelSections->getBoundingBox().size.height * 0.25f)));
+        prizeSprites[i]->setRotation(-iRotation);
 
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
+        prizeSprites[i]->addChild(prizeLabels[i], 2);
+        prizeLabels[i]->setPosition(prizeSprites[i]->getBoundingBox().size.width / 2.0f, 0.0f);
+        prizeLabels[i]->setTextColor(Color4B::BLUE);
+        //prizeLabels[i]->enableOutline(Color4B::BLACK, 30);
+    }
+    /*
+    Vec2 pOne = prizeSprites[0]->getPosition();
+    Vec2 pOneW = wheelSections->convertToWorldSpace(prizeSprites[0]->getPosition());
+    Vec2 wSecW = wheelBorder->convertToWorldSpace(wheelSections->getPosition());
+    //*/
+
+    //set position and scale of entire wheel
+    wheelBorder->setPosition(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2 + 100);
+    wheelBorder->setScale(0.4f);
+
+    //Creating button that spins wheel
+    auto spinButton = MenuItemImage::create(
+        resourcePath + "WheelAssets/spin_button.png",
+        resourcePath + "WheelAssets/spin_button.png",
+        CC_CALLBACK_1(HelloWorld::SpinWheel, this));
+    spinButton->setPosition(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 8);
+    spinButton->setScale(0.4f);
+
+    auto menu = Menu::create(spinButton, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
+    auto buttonLabel = Label::createWithSystemFont("Spin", "Ariel", 36, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
+    buttonLabel->setPosition(spinButton->getPosition());
+    this->addChild(buttonLabel, 2);
 
-    // add a label shows "Hello World"
-    // create and initialize a label
-
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    if (label == nullptr)
-    {
-        problemLoading("'fonts/Marker Felt.ttf'");
-    }
-    else
-    {
-        // position the label on the center of the screen
-        label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                                origin.y + visibleSize.height - label->getContentSize().height));
-
-        // add the label as a child to this layer
-        this->addChild(label, 1);
-    }
-
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-    if (sprite == nullptr)
-    {
-        problemLoading("'HelloWorld.png'");
-    }
-    else
-    {
-        // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-        // add the sprite as a child to this layer
-        this->addChild(sprite, 0);
-    }
     return true;
 }
 
-
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void HelloWorld::SpinWheel(Ref* pSender)
 {
-    //Close the cocos2d-x game scene and quit the application
-    Director::getInstance()->end();
+    //spin testing
+    auto fastSpin = RotateBy::create(3.0f, 720.0f);
+    auto n_fastSpin = RotateBy::create(3.0f, -720.0f);
+    auto slowSpin = RotateBy::create(1.0f, 90.0f);
+    auto startSpin = EaseBackIn::create(slowSpin->clone());
+    //auto slowdownSpin = EaseOut::create(fastSpin->clone(), 0.5f);
+    auto spinSequence = Sequence::create(startSpin, fastSpin, nullptr);
 
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() as given above,instead trigger a custom event created in RootViewController.mm as below*/
-
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
-
+    wheelSections->runAction(spinSequence);
 
 }

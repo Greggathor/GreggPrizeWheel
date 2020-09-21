@@ -115,7 +115,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>												</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/cocos2d/external/openssl/prebuilt/win32/libssl-1_1.dll C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/proj.win32/bin/PrizeWheel/Debug/libssl-1_1.dll
 if %errorlevel% neq 0 goto :cmEnd
@@ -279,7 +280,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>												</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/cocos2d/external/openssl/prebuilt/win32/libssl-1_1.dll C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/proj.win32/bin/PrizeWheel/Release/libssl-1_1.dll
 if %errorlevel% neq 0 goto :cmEnd
@@ -443,7 +445,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>												</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/cocos2d/external/openssl/prebuilt/win32/libssl-1_1.dll C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/proj.win32/bin/PrizeWheel/MinSizeRel/libssl-1_1.dll
 if %errorlevel% neq 0 goto :cmEnd
@@ -606,7 +609,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>												</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/cocos2d/external/openssl/prebuilt/win32/libssl-1_1.dll C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/proj.win32/bin/PrizeWheel/RelWithDebInfo/libssl-1_1.dll
 if %errorlevel% neq 0 goto :cmEnd
@@ -797,10 +801,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\MyDrawNode.h" />
     <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Classes\AppDelegate.h" />
     <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Classes\HelloWorldScene.h" />
     <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\proj.win32\main.h" />
     <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\proj.win32\resource.h" />
+    <ClCompile Include="..\Classes\MyDrawNode.cpp" />
     <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Classes\AppDelegate.cpp" />
     <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\proj.win32\main.cpp" />
@@ -874,6 +880,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{FFA8E7A0-4750-33F8-939B-C08C9BFA20E8}</Project>
       <Name>external</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\WheelAssets\brush.png" />
+    <Image Include="..\Resources\WheelAssets\coin.png" />
+    <Image Include="..\Resources\WheelAssets\gem.png" />
+    <Image Include="..\Resources\WheelAssets\hammer.png" />
+    <Image Include="..\Resources\WheelAssets\heart.png" />
+    <Image Include="..\Resources\WheelAssets\spin_button.png" />
+    <Image Include="..\Resources\WheelAssets\wheel_arrow.png" />
+    <Image Include="..\Resources\WheelAssets\wheel_border.png" />
+    <Image Include="..\Resources\WheelAssets\wheel_sections_8.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
