@@ -26,9 +26,6 @@
 
 USING_NS_CC;
 
-
-//Sprite* prizeSprites[8];
-//Label* prizeLabels[8];
 PrizeList prizeList;
 
 Scene* HelloWorld::createScene()
@@ -53,94 +50,69 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    //auto mynode = MyDrawNode::create(); // Create an instance of MyDrawNode
-    //this->addChild(mynode);             // Add the instance to the parent
+    //add file path to Resources folder. Not working for me by default
+    std::string resourcePath = FileUtils::getInstance()->FileUtils::getDefaultResourceRootPath();
+    
+    while(true)
+    {
+        std::size_t found = resourcePath.rfind("/PrizeWheel");
+        if (found == std::string::npos)
+            break;
+            
+        resourcePath.erase(found);
+    }
+    resourcePath += "/PrizeWheel/Resources/";
+    auto searchPaths = FileUtils::getInstance()->FileUtils::getSearchPaths();
+    searchPaths.push_back(resourcePath);
+    FileUtils::getInstance()->setSearchPaths(searchPaths);
 
-    std::string resourcePath = "C:/Users/Gregg/cocos2d-x-4.0/my_games/GreggPrizeWheel/PrizeWheel/Resources/"; //find better solution
 
-    auto wheelBorder = Sprite::create(resourcePath + "WheelAssets/wheel_border.png");
+    //adding sprites for wheel
+    auto wheelBorder = Sprite::create("WheelAssets/wheel_border.png");
     this->addChild(wheelBorder);
 
-    auto wheelArrow = Sprite::create(resourcePath + "WheelAssets/wheel_arrow.png");
+    auto wheelArrow = Sprite::create("WheelAssets/wheel_arrow.png");
     wheelBorder->addChild(wheelArrow, 5);
     wheelArrow->setAnchorPoint(Vec2(0.5f, 0.8f));
     wheelArrow->setPosition(wheelBorder->getBoundingBox().size.width / 2.0f, wheelBorder->getBoundingBox().size.height);
 
-    wheelSections = Sprite::create(resourcePath + "WheelAssets/wheel_sections_8.png");
+    wheelSections = Sprite::create("WheelAssets/wheel_sections_8.png");
     wheelBorder->addChild(wheelSections, -1);
     wheelSections->setPosition(wheelBorder->getBoundingBox().size.width / 2.0f, wheelBorder->getBoundingBox().size.height / 2.0f);
     
     //Create prize sprites on wheel
-    /*
-    prizeSprites[0] = Sprite::create(resourcePath + "WheelAssets/heart.png");
-    prizeLabels[0] = Label::createWithSystemFont("30 min", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
-    
-    prizeSprites[1] = Sprite::create(resourcePath + "WheelAssets/brush.png");
-    prizeLabels[1] = Label::createWithSystemFont("x3", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
-    
-    prizeSprites[2] = Sprite::create(resourcePath + "WheelAssets/gem.png");
-    prizeLabels[2] = Label::createWithSystemFont("x35", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
-    
-    prizeSprites[3] = Sprite::create(resourcePath + "WheelAssets/hammer.png");
-    prizeLabels[3] = Label::createWithSystemFont("x3", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
-    
-    prizeSprites[4] = Sprite::create(resourcePath + "WheelAssets/coin.png");
-    prizeLabels[4] = Label::createWithSystemFont("x750", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
-    
-    prizeSprites[5] = Sprite::create(resourcePath + "WheelAssets/brush.png");
-    prizeLabels[5] = Label::createWithSystemFont("x1", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
-    
-    prizeSprites[6] = Sprite::create(resourcePath + "WheelAssets/gem.png");
-    prizeLabels[6] = Label::createWithSystemFont("x75", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
-    
-    prizeSprites[7] = Sprite::create(resourcePath + "WheelAssets/hammer.png");
-    prizeLabels[7] = Label::createWithSystemFont("x1", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER);
-
-    for (int i = 0; i < 8; i++)
-    {
-        float iRotation = (360.0 / 16.0) + (360.0 / 8.0) * i;
-        wheelSections->setRotation(iRotation);
-        wheelSections->addChild(prizeSprites[i], 1);
-        prizeSprites[i]->setPosition(wheelSections->convertToNodeSpace(Vec2(0.0f, wheelSections->getBoundingBox().size.height * 0.25f)));
-        prizeSprites[i]->setRotation(-iRotation);
-
-        prizeSprites[i]->addChild(prizeLabels[i], 2);
-        prizeLabels[i]->setPosition(prizeSprites[i]->getBoundingBox().size.width / 2.0f, 0.0f);
-        prizeLabels[i]->setTextColor(Color4B::BLUE);
-        //prizeLabels[i]->enableOutline(Color4B::BLACK, 30);
-    }
-    */
-    prizeList.add(Sprite::create(resourcePath + "WheelAssets/heart.png"),
+    prizeList.add(Sprite::create("WheelAssets/heart.png"),
         Label::createWithSystemFont("30 min", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER),
         20);
 
-    prizeList.add(Sprite::create(resourcePath + "WheelAssets/brush.png"),
+    prizeList.add(Sprite::create("WheelAssets/brush.png"),
         Label::createWithSystemFont("x3", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER),
         10);
 
-    prizeList.add(Sprite::create(resourcePath + "WheelAssets/gem.png"),
+    prizeList.add(Sprite::create("WheelAssets/gem.png"),
         Label::createWithSystemFont("x35", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER),
         10);
 
-    prizeList.add(Sprite::create(resourcePath + "WheelAssets/hammer.png"),
+    prizeList.add(Sprite::create("WheelAssets/hammer.png"),
         Label::createWithSystemFont("x3", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER),
         10);
 
-    prizeList.add(Sprite::create(resourcePath + "WheelAssets/coin.png"),
+    prizeList.add(Sprite::create("WheelAssets/coin.png"),
         Label::createWithSystemFont("x750", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER),
         5);
 
-    prizeList.add(Sprite::create(resourcePath + "WheelAssets/brush.png"),
+    prizeList.add(Sprite::create("WheelAssets/brush.png"),
         Label::createWithSystemFont("x1", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER),
         20);
 
-    prizeList.add(Sprite::create(resourcePath + "WheelAssets/gem.png"),
+    prizeList.add(Sprite::create("WheelAssets/gem.png"),
         Label::createWithSystemFont("x75", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER),
         5);
 
-    prizeList.add(Sprite::create(resourcePath + "WheelAssets/hammer.png"),
+    prizeList.add(Sprite::create("WheelAssets/hammer.png"),
         Label::createWithSystemFont("x1", "Ariel", 42, Size::ZERO, TextHAlignment::CENTER, TextVAlignment::CENTER),
         20);
+
          //correctly orient prize sprites on wheel
     for (int i = 0; i < 8; i++)
     {
@@ -160,10 +132,11 @@ bool HelloWorld::init()
     wheelBorder->setPosition(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2 + 100);
     wheelBorder->setScale(spriteScale);
 
+
     //Creating button that spins wheel
     spinButton = MenuItemImage::create(
-        resourcePath + "WheelAssets/spin_button.png",
-        resourcePath + "WheelAssets/spin_button.png",
+        "WheelAssets/spin_button.png",
+        "WheelAssets/spin_button.png",
         CC_CALLBACK_1(HelloWorld::SpinWheel, this));
     spinButton->setPosition(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 8);
 
@@ -175,8 +148,8 @@ bool HelloWorld::init()
 
     //Creating button to claim prize after spin
     claimButton = MenuItemImage::create(
-        resourcePath + "WheelAssets/spin_button.png",
-        resourcePath + "WheelAssets/spin_button.png",
+        "WheelAssets/spin_button.png",
+        "WheelAssets/spin_button.png",
         CC_CALLBACK_1(HelloWorld::ClaimPrize, this));
     claimButton->setPosition(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 8);
 
@@ -200,6 +173,7 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float delta)
 {
+    //Sets up scene once wheel is done spinning
     if (timeLeft > 0.0f)
     {
         timeLeft -= delta;
@@ -211,14 +185,6 @@ void HelloWorld::update(float delta)
 
             iPrizePos = prizeList.sprites[prizeTag]->getPosition();
             iPrizeRot = prizeList.sprites[prizeTag]->getRotation();
-
-            /*
-            wheelSections->removeChildByTag(prizeTag);
-            this->addChild(prizeList.sprites[prizeTag]);
-            prizeList.sprites[prizeTag]->setPosition(wheelSections->convertToWorldSpace(iPrizePos));
-            prizeList.sprites[prizeTag]->setRotation(0.0f);
-            prizeList.sprites[prizeTag]->setScale(spriteScale);
-            */
 
             auto visibleSize = Director::getInstance()->getVisibleSize(); // Screen's visible size
             Vec2 origin = Director::getInstance()->getVisibleOrigin();    // Screen's visible origin
@@ -244,20 +210,23 @@ void HelloWorld::update(float delta)
     }
 }
 
+//Called when button to spin wheel is pressed
 void HelloWorld::SpinWheel(Ref* pSender)
 {
     //spin testing
     //prizeList.testWinRate(1000);
 
-    float spinSpeed = 240.0f; // degrees / sec
+    float spinSpeed = 240.0f; // degrees/sec
 
     auto startSpin = RotateBy::create(1.0f, 90.0f);
     auto ebiStartSpin = EaseBackIn::create(startSpin->clone());
     auto normalSpin = RotateBy::create(3.0f, 3.0f * spinSpeed);
 
+    //Determine prize, then find out how long and how far wheel needs to spin to land on that prize
     prizeTag = prizeList.winPrize();
     float endRotation = prizeList.rotations[prizeTag];
     float degreesTilEnd = endRotation - (wheelSections->getRotation() + 90.0f + (3.0f * spinSpeed));
+     //if negative degrees, convert to positive
     while (degreesTilEnd <= 0.0f)
     {
         degreesTilEnd += 360.0f;
@@ -266,31 +235,24 @@ void HelloWorld::SpinWheel(Ref* pSender)
     auto endSpin = RotateBy::create(timeTilEnd, degreesTilEnd);
 
     auto spinSequence = Sequence::create(ebiStartSpin, normalSpin, endSpin, nullptr);
-    //auto spinSequence = Sequence::create(ebiStartSpin, normalSpin, nullptr);
 
     wheelSections->runAction(spinSequence);
 
     auto hide = Hide::create();
     spinButton->runAction(hide);
 
-    //auto show = Show::create();
-    //claimButton->runAction(show);
-
+    //set timer for how long wheel is going to spin
     timeLeft = 1.0 + 3.0 + timeTilEnd;
 }
 
+//Called when button to claim prize is pressed
 void HelloWorld::ClaimPrize(Ref* pSender)
 {
     auto hide = Hide::create();
     auto show = Show::create();
     claimButton->runAction(hide);
     spinButton->runAction(show);
-    //wheelSections->runAction(show);
 
-    //prizeList.sprites[prizeTag]->removeFromParent();
-    //wheelSections->addChild(prizeList.sprites[prizeTag], 4, prizeTag);
-    //prizeList.sprites[prizeTag]->setPosition(iPrizePos);
-    //prizeList.sprites[prizeTag]->setRotation(iPrizeRot);
     prizeList.sprites[prizeTag]->setScale(1.0f);
     prizeList.sprites[prizeTag]->stopAllActions();
 }

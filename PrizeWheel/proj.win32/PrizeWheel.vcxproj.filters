@@ -13,9 +13,6 @@
     <ClCompile Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\cocos2d\cocos\precheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MyDrawNode.cpp">
-      <Filter>Source Files\Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\PrizeList.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
@@ -50,9 +47,6 @@
     </ClInclude>
     <ClInclude Include="C:\Users\Gregg\cocos2d-x-4.0\my_games\GreggPrizeWheel\PrizeWheel\Resources\res\.gitkeep">
       <Filter>Resources\res</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MyDrawNode.h">
-      <Filter>Source Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PrizeList.h">
       <Filter>Source Files\Classes</Filter>

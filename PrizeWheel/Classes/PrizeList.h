@@ -8,7 +8,6 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-//#include <iomanip>
 #include "cocos2d.h"
 
 using namespace cocos2d;

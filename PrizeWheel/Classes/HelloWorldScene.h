@@ -26,8 +26,8 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-//#include "MyDrawNode.h"
 #include "PrizeList.h"
+#include <CCFileUtils.h>
 
 class HelloWorld : public cocos2d::Scene
 {
@@ -51,7 +51,6 @@ public:
     void SpinWheel(Ref* pSender);
     void ClaimPrize(Ref* pSender);
     
-    // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 };
 

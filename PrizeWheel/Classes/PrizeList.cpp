@@ -5,7 +5,6 @@ void PrizeList::add(Sprite* sprite, Label* label, const int& probability)
 	sprites.push_back(sprite);
 	labels.push_back(label);
 	probabilities.push_back(probability);
-	//positions.push_back(position);
 }
 
 //assumes probabilities add up to 100. If not, will return first prize in case of exception
