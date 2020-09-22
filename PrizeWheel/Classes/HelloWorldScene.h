@@ -26,21 +26,30 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-#include "MyDrawNode.h"
+//#include "MyDrawNode.h"
+#include "PrizeList.h"
 
 class HelloWorld : public cocos2d::Scene
 {
     Sprite* wheelSections;
+    MenuItemImage* spinButton;
+    MenuItemImage* claimButton;
+
+    float spriteScale; //what to scale sprites to fit on screen
+
+    float timeLeft; //acts as timer. Used to check when wheel stops spinning
+    int prizeTag; //int associated to currently awarded prize
+    Vec2 iPrizePos; //stores initial position of current prize before it moves when it is awarded to player
+    float iPrizeRot; //stores initial position of current prize before it moves when it is awarded to player
 
 public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
-    
-    // a selector callback
-    //void menuCloseCallback(cocos2d::Ref* pSender);
+    virtual void update(float delta);
 
     void SpinWheel(Ref* pSender);
+    void ClaimPrize(Ref* pSender);
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
